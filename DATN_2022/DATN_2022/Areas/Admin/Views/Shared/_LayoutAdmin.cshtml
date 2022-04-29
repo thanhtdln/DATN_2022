@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="~/Areas/Admin/AdminRoot/production/images/favicon.ico" type="image/ico" />
+
+    <title>Great Tech - Admin | </title>
+
+    <!-- Bootstrap -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/Areas/Admin/AdminRoot/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="~/Areas/Admin/AdminRoot/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Great Tech!</span></a>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix">
+                        <div class="profile_pic">
+                            <img src="~/Areas/Admin/AdminRoot/images/img.jpg" alt="..." class="img-circle profile_img">
+                        </div>
+                        <div class="profile_info">
+                            <span>Welcome,</span>
+                            <h2></h2>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <br />
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <ul class="nav side-menu">
+                                <li>
+                                    <a href="/Admin/Products/Index"><i class="fa fa-archive"></i> Quản lý sản phẩm </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Users/Index"><i class="fa fa-user"></i> Quản lý người dùng </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Accounts/Index"><i class="fa fa-edit"></i> Quản lý tài khoản </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Producers/Index"><i class="fa fa-compass"></i> Quản lý nhà cung cấp </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Categories/Index"><i class="fa fa-arrow-circle-down"></i> Quản lý danh mục </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Promotions/Index"><i class="fa fa-money"></i> Quản lý khuyến mãi </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/ShopHistory/Index"><i class="fa fa-history"></i> Lịch sử bán hàng </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small">
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav>
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+            <div class="right_col" role="main">
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                </div>
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/bootstrap")
+                @RenderSection("scripts", required: false)
+            </div>
+            <!-- footer content -->
+            <footer>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/Flot/jquery.flot.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/Areas/Admin/AdminRoot/vendors/moment/min/moment.min.js"></script>
+    <script src="~/Areas/Admin/AdminRoot/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Areas/Admin/AdminRoot/build/js/custom.min.js"></script>
+
+</body>
+</html>
