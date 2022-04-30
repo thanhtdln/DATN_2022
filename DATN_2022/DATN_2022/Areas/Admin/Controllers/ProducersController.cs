@@ -46,16 +46,24 @@ namespace DATN_2022.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Address,Phone,Email,CreatedAt,UpdatedAt")] Producer producer)
+        public ActionResult Create([Bind(Include = "Id,Name,Address,Phone,Email")] Producer producer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Producers.Add(producer);
-                db.SaveChanges();
+                producer.CreatedAt = DateTime.Now;
+                producer.UpdatedAt = DateTime.Now;
+                if (ModelState.IsValid)
+                {
+                    db.Producers.Add(producer);
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
-
-            return View(producer);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu: " + ex.Message;
+                return View(producer);
+            }
         }
 
         // GET: Admin/Producers/Edit/5
@@ -78,15 +86,23 @@ namespace DATN_2022.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Address,Phone,Email,CreatedAt,UpdatedAt")] Producer producer)
+        public ActionResult Edit([Bind(Include = "Id,Name,Address,Phone,Email,CreatedAt")] Producer producer)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(producer).State = EntityState.Modified;
-                db.SaveChanges();
+                producer.UpdatedAt = DateTime.Now;
+                if (ModelState.IsValid)
+                {
+                    db.Entry(producer).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Index");
             }
-            return View(producer);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu: " + ex.Message;
+                return View(producer);
+            }
         }
 
         // GET: Admin/Producers/Delete/5
@@ -110,9 +126,17 @@ namespace DATN_2022.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(long id)
         {
             Producer producer = db.Producers.Find(id);
-            db.Producers.Remove(producer);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Producers.Remove(producer);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Không thể xóa bản ghi: " + ex.Message;
+                return View("Delete", producer);
+            }
         }
 
         protected override void Dispose(bool disposing)

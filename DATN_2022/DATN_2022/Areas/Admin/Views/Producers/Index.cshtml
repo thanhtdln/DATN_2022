@@ -5,30 +5,30 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý nhà cung cấp</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên nhà cung cấp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            Địa chỉ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Số điện thoại
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            Ngày thêm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
+            Ngày cập nhật lần cuối
         </th>
         <th></th>
     </tr>
@@ -54,9 +54,9 @@
             @Html.DisplayFor(modelItem => item.UpdatedAt)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Sửa", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Chi tiết", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Xóa", "Delete", new { id=item.Id })
         </td>
     </tr>
 }

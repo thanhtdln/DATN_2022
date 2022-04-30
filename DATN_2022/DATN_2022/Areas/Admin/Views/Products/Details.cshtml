@@ -5,30 +5,13 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Chi tiết sản phẩm</h2>
 
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Producer.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Producer.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Tên sản phẩm
         </dt>
 
         <dd>
@@ -36,7 +19,23 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            Danh mục
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            Nhà cung cấp
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Producer.Name)
+        </dd>
+
+        <dt>
+            Ngày tạo
         </dt>
 
         <dd>
@@ -44,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
+            Ngày cập nhật lần cuối
         </dt>
 
         <dd>
@@ -52,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CostPrice)
+            Gái gốc
         </dt>
 
         <dd>
@@ -60,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SellPrice)
+            Giá bán
         </dt>
 
         <dd>
@@ -68,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Amount)
+            Số lượng
         </dt>
 
         <dd>
@@ -76,15 +75,20 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Avatar)
+            Ảnh đại diện
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Avatar)
+            @{
+                string imgPath = "~/Areas/Admin/AdminRoot/Images/" + Model.Avatar;
+            }
+            <img src="@Url.Content(imgPath)" width="300" class="img-thumbnail" />
+            <br />
+            @Html.DisplayFor(modelItem => item.Avatar)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Mô tả
         </dt>
 
         <dd>
@@ -94,6 +98,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
 </p>

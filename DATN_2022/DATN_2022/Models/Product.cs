@@ -37,7 +37,7 @@ namespace DATN_2022.Models
         public double SellPrice { get; set; }
         public long Amount { get; set; }
 
-        [Required(ErrorMessage = "Vui lòng ch?n ?nh ??i di?n c?a s?n ph?m")]
+        [Required]
         [StringLength(1000)]
         public string Avatar { get; set; }
 

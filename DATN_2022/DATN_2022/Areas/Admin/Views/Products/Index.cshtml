@@ -5,84 +5,89 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý sản phẩm</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Thêm mới", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Category.Name)
+            Tên sản phẩm
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Producer.Name)
+            Danh mục
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Nhà cung cấp
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            Ngày tạo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
+            Ngày cập nhật
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CostPrice)
+            Giá gốc
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SellPrice)
+            Giá bán
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Amount)
+            Số lượng
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Avatar)
+            Ảnh đại diện
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Mô tả
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Producer.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CostPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SellPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Amount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Avatar)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Category.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Producer.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UpdatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CostPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SellPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Amount)
+    </td>
+    <td>
+        @{ 
+            string imgPath = "~/Areas/Admin/AdminRoot/Images/" + item.Avatar;
+        }
+        <img src="@Url.Content(imgPath)" width="300" class="img-thumbnail" />
+        <br />
+        @Html.DisplayFor(modelItem => item.Avatar)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.ActionLink("Sửa", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Chi tiết", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Xóa", "Delete", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>

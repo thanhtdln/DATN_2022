@@ -49,33 +49,33 @@ namespace DATN_2022.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description,CreatedAt,UpdatedAt")] Product product)
         {
             try
             {
-                product.Avatar = "";
-                var f = Request.Files["ImgFile"];
-                if (f != null && f.ContentLength > 0)
-                {
-                    string fileName=System.IO.Path.GetFileName(f.FileName);
-                    string uploadPath = Server.MapPath("~/Areas/Admin/AdminRoot/Images/" + fileName);
-                    f.SaveAs(uploadPath);
-                    product.Avatar = fileName;
-                }
                 product.CreatedAt = DateTime.Now;
                 product.UpdatedAt = DateTime.Now;
                 if (ModelState.IsValid)
                 {
+                    product.Avatar = "";
+                    var f = Request.Files["ImgFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        string fileName = System.IO.Path.GetFileName(f.FileName);
+                        string uploadPath = Server.MapPath("~/Areas/Admin/AdminRoot/Images/" + fileName);
+                        f.SaveAs(uploadPath);
+                        product.Avatar = fileName;
+                    }
                     db.Products.Add(product);
                     db.SaveChanges();
                 }
-                return RedirectToAction("Index");
                 ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
                 ViewBag.ProducerId = new SelectList(db.Producers, "Id", "Name", product.ProducerId);
+                return RedirectToAction("Index");
             }
             catch (Exception ex)
             {
-                ViewBag.Error = "Lỗi nhập liệu: " + ex.Message;
+                ViewBag.Error = "Lỗi nhập dữ liệu: " + ex.Message;
                 return View(product);
             }
         }
@@ -102,17 +102,34 @@ namespace DATN_2022.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CreatedAt,UpdatedAt,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description,CreatedAt,UpdatedAt")] Product product)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(product).State = EntityState.Modified;
-                db.SaveChanges();
+                product.UpdatedAt = DateTime.Now;
+                if (ModelState.IsValid)
+                {
+                    product.Avatar = "";
+                    var f = Request.Files["ImgFile"];
+                    if (f != null && f.ContentLength > 0)
+                    {
+                        string fileName = System.IO.Path.GetFileName(f.FileName);
+                        string uploadPath = Server.MapPath("~/Areas/Admin/AdminRoot/Images/" + fileName);
+                        f.SaveAs(uploadPath);
+                        product.Avatar = fileName;
+                    }
+                    db.Entry(product).State = EntityState.Modified;
+                    db.SaveChanges();
+                }
+                ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
+                ViewBag.ProducerId = new SelectList(db.Producers, "Id", "Name", product.ProducerId);
                 return RedirectToAction("Index");
             }
-            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewBag.ProducerId = new SelectList(db.Producers, "Id", "Name", product.ProducerId);
-            return View(product);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu: " + ex.Message;
+                return View(product);
+            }
         }
 
         // GET: Admin/Products/Delete/5
@@ -136,9 +153,17 @@ namespace DATN_2022.Areas.Admin.Controllers
         public ActionResult DeleteConfirmed(long id)
         {
             Product product = db.Products.Find(id);
-            db.Products.Remove(product);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                db.Products.Remove(product);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Không thể xóa bản ghi: " + ex.Message;
+                return View("Delete", product);
+            }
         }
 
         protected override void Dispose(bool disposing)
