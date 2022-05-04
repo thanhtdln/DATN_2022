@@ -20,24 +20,24 @@ namespace DATN_2022.Models
 
         public long Id { get; set; }
 
-        [Required(ErrorMessage = "Không th? ?? tr?ng tên s?n ph?m")]
+        [Required]
         [StringLength(1000)]
         public string Name { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
         public DateTime UpdatedAt { get; set; }
-
+        [Required]
         public long CategoryId { get; set; }
-
+        [Required]
         public long ProducerId { get; set; }
-        [Required(ErrorMessage = "Không th? ?? tr?ng giá g?c")]
+        [Required]
         public double CostPrice { get; set; }
-        [Required(ErrorMessage = "Không th? ?? tr?ng giá bán")]
+        [Required]
         public double SellPrice { get; set; }
+        [Required]
         public long Amount { get; set; }
 
-        [Required]
         [StringLength(1000)]
         public string Avatar { get; set; }
 

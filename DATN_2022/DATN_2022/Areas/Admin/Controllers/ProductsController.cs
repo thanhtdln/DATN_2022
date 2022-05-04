@@ -49,23 +49,23 @@ namespace DATN_2022.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description,CreatedAt,UpdatedAt")] Product product)
+        public ActionResult Create([Bind(Include = "Id,Name,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description")] Product product)
         {
             try
             {
+                product.Avatar = "";
+                var f = Request.Files["ImgFile"];
+                if (f != null && f.ContentLength > 0)
+                {
+                    string fileName = System.IO.Path.GetFileName(f.FileName);
+                    string uploadPath = Server.MapPath("~/wwwroot/images/" + fileName);
+                    f.SaveAs(uploadPath);
+                    product.Avatar = fileName;
+                }
                 product.CreatedAt = DateTime.Now;
                 product.UpdatedAt = DateTime.Now;
                 if (ModelState.IsValid)
                 {
-                    product.Avatar = "";
-                    var f = Request.Files["ImgFile"];
-                    if (f != null && f.ContentLength > 0)
-                    {
-                        string fileName = System.IO.Path.GetFileName(f.FileName);
-                        string uploadPath = Server.MapPath("~/Areas/Admin/AdminRoot/Images/" + fileName);
-                        f.SaveAs(uploadPath);
-                        product.Avatar = fileName;
-                    }
                     db.Products.Add(product);
                     db.SaveChanges();
                 }
@@ -102,22 +102,21 @@ namespace DATN_2022.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description,CreatedAt,UpdatedAt")] Product product)
+        public ActionResult Edit([Bind(Include = "Id,Name,CreatedAt,CategoryId,ProducerId,CostPrice,SellPrice,Amount,Avatar,Description")] Product product)
         {
             try
             {
+                var f = Request.Files["ImgFile"];
+                if (f != null && f.ContentLength > 0)
+                {
+                    string fileName = System.IO.Path.GetFileName(f.FileName);
+                    string uploadPath = Server.MapPath("~/wwwroot/images/" + fileName);
+                    f.SaveAs(uploadPath);
+                    product.Avatar = fileName;
+                }
                 product.UpdatedAt = DateTime.Now;
                 if (ModelState.IsValid)
                 {
-                    product.Avatar = "";
-                    var f = Request.Files["ImgFile"];
-                    if (f != null && f.ContentLength > 0)
-                    {
-                        string fileName = System.IO.Path.GetFileName(f.FileName);
-                        string uploadPath = Server.MapPath("~/Areas/Admin/AdminRoot/Images/" + fileName);
-                        f.SaveAs(uploadPath);
-                        product.Avatar = fileName;
-                    }
                     db.Entry(product).State = EntityState.Modified;
                     db.SaveChanges();
                 }

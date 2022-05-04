@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            Gái gốc
+            Giá gốc
         </dt>
 
         <dd>
@@ -67,7 +67,7 @@
         </dd>
 
         <dt>
-            Số lượng
+            Số lượng còn
         </dt>
 
         <dd>
@@ -80,11 +80,11 @@
 
         <dd>
             @{
-                string imgPath = "~/Areas/Admin/AdminRoot/Images/" + Model.Avatar;
+                string imgPath = "~/wwwroot/images/" + Model.Avatar;
             }
             <img src="@Url.Content(imgPath)" width="300" class="img-thumbnail" />
             <br />
-            @Html.DisplayFor(modelItem => item.Avatar)
+            @Html.DisplayFor(model => model.Avatar)
         </dd>
 
         <dt>
@@ -99,5 +99,5 @@
 </div>
 <p>
     @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Quay về danh sách sản phẩm", "Index")
+    @Html.ActionLink("Quay về", "Index")
 </p>

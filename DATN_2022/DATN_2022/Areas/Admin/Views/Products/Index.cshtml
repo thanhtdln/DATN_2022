@@ -25,7 +25,7 @@
             Ngày tạo
         </th>
         <th>
-            Ngày cập nhật
+            Ngày cập nhật lần cuối
         </th>
         <th>
             Giá gốc
@@ -34,7 +34,7 @@
             Giá bán
         </th>
         <th>
-            Số lượng
+            Số lượng còn
         </th>
         <th>
             Ảnh đại diện
@@ -72,8 +72,8 @@
         @Html.DisplayFor(modelItem => item.Amount)
     </td>
     <td>
-        @{ 
-            string imgPath = "~/Areas/Admin/AdminRoot/Images/" + item.Avatar;
+        @{
+            string imgPath = "~/wwwroot/images/" + item.Avatar;
         }
         <img src="@Url.Content(imgPath)" width="300" class="img-thumbnail" />
         <br />

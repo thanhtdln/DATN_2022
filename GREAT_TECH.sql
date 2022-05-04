@@ -74,7 +74,8 @@ create table ShopHistory
 	EndUserId bigint foreign key references EndUser(Id) not null,
 	ProductId bigint foreign key references Product(Id) not null,
 	CreatedAt datetime not null,
-	Amount bigint not null
+	Amount bigint not null,
+	primary key(EndUserId, ProductId)
 )
 create table ReceiveHistory
 (
